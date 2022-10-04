@@ -106,7 +106,8 @@ sudo python3 -m pip install FreeTAKServer[ui]==1.5.10
 ```
 
 ## Configure and Run FTS (1.9+) 
-this works only for 1.9 or better, for see here for [manual configuration](https://github.com/FreeTAKTeam/FreeTAKServer-User-Docs/blob/main/docs/docs/Installation/PyPi/Linux/ManualConfiguration.md) 
+this works only for 1.9 or better, for see here for [manual configuration](https://github.com/FreeTAKTeam/FreeTAKServer-User-Docs/blob/main/docs/docs/Installation/Linux/3_ManualConfiguration.md)
+
 start FTS
 ```
 sudo python3 -m FreeTAKServer.controllers.services.FTS 
