@@ -1,0 +1,4393 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>**COT Domain Model** - FreeTAKServer Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cot-domain-model" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="FreeTAKServer Documentation" class="md-header__button md-logo" aria-label="FreeTAKServer Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FreeTAKServer Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              **COT Domain Model**
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/FreeTAKTeam/FreeTAKServer-User-Docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="FreeTAKServer Documentation" class="md-nav__button md-logo" aria-label="FreeTAKServer Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    FreeTAKServer Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/FreeTAKTeam/FreeTAKServer-User-Docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        FreeTAKServer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API/REST_APIDoc/" class="md-nav__link">
+        REST API - Public
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API/REST_API_InternalDoc/" class="md-nav__link">
+        REST API - Internal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FeaturesCompared/" class="md-nav__link">
+        FreeTAKServer Compared
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Architecture
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Architecture" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Architecture
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          **COT Domain Model**
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        **COT Domain Model**
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#__serverdestination" class="md-nav__link">
+    __serverdestination
+  </a>
+  
+    <nav class="md-nav" aria-label="__serverdestination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#__serverdestination-attributes" class="md-nav__link">
+    __serverdestination attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text" class="md-nav__link">
+    Text
+  </a>
+  
+    <nav class="md-nav" aria-label="Text">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#text-attributes" class="md-nav__link">
+    Text attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MilSTD2525/" class="md-nav__link">
+        About Mil-STD-2525 and COTS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          FreeTAKHub
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="FreeTAKHub" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          FreeTAKHub
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Integration
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Integration" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Integration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FreeTAKHub/Integration/NodeRedinstallation/" class="md-nav__link">
+        FreeTAKHub Node-RED
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Video
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Video" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Video
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FreeTAKHub/Video/Installation/" class="md-nav__link">
+        Video Server
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          VideoChecker
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="VideoChecker" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          VideoChecker
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FreeTAKHub/VideoChecker/VideoCheck/" class="md-nav__link">
+        VideoCheck
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          Voice
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Voice" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Voice
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FreeTAKHub/Voice/VoiceServer/" class="md-nav__link">
+        FreeTAKHub Voice installation
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_5" type="checkbox" id="__nav_4_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_5">
+          WebMap
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="WebMap" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          WebMap
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FreeTAKHub/WebMap/Installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          HowToHelp
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="HowToHelp" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          HowToHelp
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../HowToHelp/gettingStartedAsHelper/" class="md-nav__link">
+        How to help
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Installation" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Tools/" class="md-nav__link">
+        General Tips
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Video%20Guides/" class="md-nav__link">
+        Video Guides
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Android/Android/" class="md-nav__link">
+        FTS Installation with Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Android/installUIOnAndroid/" class="md-nav__link">
+        FTS-UI Installation with Android
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_4">
+          Ansible
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Ansible" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          Ansible
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Ansible/Ansible/" class="md-nav__link">
+        Install FreeTAKHub with Ansible
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Ansible/ZeroTouchInstall/" class="md-nav__link">
+        Zero Touch Installation
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5">
+          Cloud
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Cloud" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_5">
+          <span class="md-nav__icon md-icon"></span>
+          Cloud
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Cloud/0_ConfigureMachine/" class="md-nav__link">
+        Configure and Connect to your cloud server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Cloud/AWS/" class="md-nav__link">
+        setup in AWS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Cloud/DigitalOcean%20with%20TerraformDigitalOcean%20with%20Terraform/" class="md-nav__link">
+        DigitalOcean with Terraform
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_6" type="checkbox" id="__nav_6_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_6">
+          Docker
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Docker" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_6">
+          <span class="md-nav__icon md-icon"></span>
+          Docker
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Docker/" class="md-nav__link">
+        Install
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Docker/CLI/" class="md-nav__link">
+        CLI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Docker/Debian/" class="md-nav__link">
+        Debian
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Docker/Quick%20Start%20Guide/" class="md-nav__link">
+        Quick Start Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Docker/Raspberry%20Pi/" class="md-nav__link">
+        Raspberry Pi 4/Raspberry Pi 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_6_6" type="checkbox" id="__nav_6_6_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_6_6">
+          Multiple Servers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Multiple Servers" data-md-level="3">
+        <label class="md-nav__title" for="__nav_6_6_6">
+          <span class="md-nav__icon md-icon"></span>
+          Multiple Servers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Docker/Multiple%20Servers/multiple/" class="md-nav__link">
+        Multiple Servers on Single Host
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_6_7" type="checkbox" id="__nav_6_6_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_6_7">
+          Upgrade
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Upgrade" data-md-level="3">
+        <label class="md-nav__title" for="__nav_6_6_7">
+          <span class="md-nav__icon md-icon"></span>
+          Upgrade
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Docker/Upgrade/Upgrade/" class="md-nav__link">
+        Upgrading Existing Container
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_7" type="checkbox" id="__nav_6_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_7">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_7">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Linux/1_Install/" class="md-nav__link">
+        1. FreeTAK Server Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Linux/3_ManualConfiguration/" class="md-nav__link">
+        3 ManualConfiguration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Linux/Running/" class="md-nav__link">
+        Running
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Linux/Service/" class="md-nav__link">
+        Service
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Linux/Update/" class="md-nav__link">
+        Update
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_8" type="checkbox" id="__nav_6_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_8">
+          RaspberryPie
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RaspberryPie" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_8">
+          <span class="md-nav__icon md-icon"></span>
+          RaspberryPie
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/RaspberryPie/Installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_9" type="checkbox" id="__nav_6_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_9">
+          Troubleshooting
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Troubleshooting" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_9">
+          <span class="md-nav__icon md-icon"></span>
+          Troubleshooting
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Troubleshooting/InstallationCheck/" class="md-nav__link">
+        Checking Your Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Troubleshooting/SocketIssue/" class="md-nav__link">
+        SSL issue: Change the Number of max file open
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Troubleshooting/troubleshooting/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_10" type="checkbox" id="__nav_6_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_10">
+          Windows
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Windows" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_10">
+          <span class="md-nav__icon md-icon"></span>
+          Windows
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Windows/FreeTAKServer_Windows_Install/" class="md-nav__link">
+        FreeTAKServer Install On Windows Computer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Installation/Windows/FreeTAKServer_Windows_Install_Tutorial/" class="md-nav__link">
+        FreeTAKServer Install On Windows Computer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          Usage
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Usage" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Usage
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Usage/Connecting%20ATAK/" class="md-nav__link">
+        Connecting ATAK to Pub Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Usage/Connecting%20WinTAK/" class="md-nav__link">
+        Connecting WinTAK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Usage/ExCheck/" class="md-nav__link">
+        ExCheck
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Usage/VideoManagement/" class="md-nav__link">
+        Video Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          Administration
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Administration" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Administration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../administration/CLI/" class="md-nav__link">
+        CLI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../administration/SSL/" class="md-nav__link">
+        SSL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../administration/Wed%20Admin/" class="md-nav__link">
+        WebUI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../administration/usingConsole/" class="md-nav__link">
+        Unix Console
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9">
+          Tools
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tools" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Tools
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/FreeTAKMumla/" class="md-nav__link">
+        FreeTAKMumla Plugin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/FreeTAKUAS/" class="md-nav__link">
+        FreeTAKUAS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/UASTool/" class="md-nav__link">
+        UAS tool
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/takICU/" class="md-nav__link">
+        TAK ICU
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#__serverdestination" class="md-nav__link">
+    __serverdestination
+  </a>
+  
+    <nav class="md-nav" aria-label="__serverdestination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#__serverdestination-attributes" class="md-nav__link">
+    __serverdestination attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text" class="md-nav__link">
+    Text
+  </a>
+  
+    <nav class="md-nav" aria-label="Text">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#text-attributes" class="md-nav__link">
+    Text attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <a href="https://github.com/FreeTAKTeam/FreeTAKServer-User-Docs/edit/main/docs/docs/About/architecture/COTDomain.md" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+<h1 id="cot-domain-model"><strong>COT Domain Model</strong></h1>
+<p>The Cursor-On-Target (CoT) Event data model defines a Domain model as a system of abstractions that describes selected aspects of a sphere of knowledge for the TAK  domain)
+It's reppresented as a platform-independent model (PIM) that is independent of the specific technological platform used to implement it.
+the Domain model  can be translated into a XML data schema for exchanging time sensitive position of moving objects, or "what", "when", and "where" (WWW) information, between systems.
+<img alt="FTS COT domain Model" src="https://user-images.githubusercontent.com/60719165/193834333-ea041722-e3ea-46f9-9eb6-7417c19807ea.png" /></p>
+<h2 id="__serverdestination"><strong>__serverdestination</strong></h2>
+<p>the destination of a certain message. indicates how to communicate back to the sender.</p>
+<h3 id="__serverdestination-attributes"><strong>__serverdestination attributes</strong></h3>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">destinations</td>
+<td align="left"><p>string composed by IP:port: protocol:machineID.</p><p><em>e.g. 192.168.0.103:4242:tcp:ANDROID-R52JB0CDC4E</em></p></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>_flow-tags_</strong>
+This is a Cursor On Target detail class that holds "fingerprints" of the system that have processed a particular CoT event.  This information aids in the routine of CoT messages along a particular processing chain.  Each system that touches a particular CoT event is expected to add its own attribute to this entity.  The attribute name should reflect the particular system name, and the value should be the time stamp when the information was sent out from that system.  Some illustrative _flow-tags_ attributes are adocs, fbcb2, and tadilj, but the attribute list is not a closed set.</p>
+<p>### <strong>_flow-tags_ attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">version</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">adocs</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">fbcb2</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">tadilj</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>_medevac_</strong>
+the medevac class is used to describe a case of someone in need to be evacuated</p>
+<p>### <strong>_medevac_  attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">litter</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">freq</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">terrain_none</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">zone_prot_selection</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Title</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Priority</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">medline_remarks</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Security</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">routine</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">equipment_none</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">hlz_marking</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">casevac</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">urgent</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>_radio</strong></p>
+<p>### <strong>_radio attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">rssi</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">gps</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>Attitude</strong></p>
+<p>### <strong>Attitude attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">roll</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">pitch</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">yaw</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>bullseye</strong></p>
+<p>### <strong>bullseye attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">mils</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">distance</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">bearingRef</td>
+<td align="left"><p></p><p><code></code>"M" magnetic north</p><p><code></code>"T" true north</p><p><code></code>"G" grid north</p><p>                        </p></td>
+</tr>
+<tr>
+<td align="left">bullseyeUID</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">distanceUnits</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">edgeToCenter</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">rangeRingVisible</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">title</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">hasRangeRings</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>bullseye_bearingRef</strong></p>
+<p>### <strong>bullseye_bearingRef attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">T</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">M</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">G</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>chat</strong>
+Class that holds information regarding chat. When communicating with a group, the <strong>__chat</strong> attributes specify the unique ID of the chat group, and the common name as to be read by the user.  The recipient, upon receipt, will see that these fields do not match their information, and create the appropriate group.  Members will be populated from the attributes of the <strong>chatgrp</strong> element.</p>
+<p>### <strong>chat attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">senderCallsign</td>
+<td align="left">the call sign of the sender</td>
+</tr>
+<tr>
+<td align="left">chatroom</td>
+<td align="left">TBD: the callsign of the receiver?</td>
+</tr>
+<tr>
+<td align="left">groupOwner</td>
+<td align="left">TBD,</td>
+</tr>
+<tr>
+<td align="left">id</td>
+<td align="left">TBD: the unique ID of the sender?</td>
+</tr>
+<tr>
+<td align="left">parent</td>
+<td align="left">the group where thise chat is attached</td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>chatgrp</strong>
+Class hosting IDs regarding the from and to</p>
+<p>### <strong>chatgrp attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">uid0</td>
+<td align="left">the machine ID of the sender</td>
+</tr>
+<tr>
+<td align="left">uid1</td>
+<td align="left">another ID</td>
+</tr>
+<tr>
+<td align="left">id</td>
+<td align="left">third ID</td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>checklist</strong></p>
+<p>### <strong>checklist attributes</strong></p>
+<p>## <strong>checklistColumn</strong></p>
+<p>### <strong>checklistColumn attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">columnName</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">columnType</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">columnWidth</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>checklistColumns</strong></p>
+<p>### <strong>checklistColumns attributes</strong></p>
+<p>## <strong>checklistColumnType</strong></p>
+<p>### <strong>checklistColumnType attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">ShortString</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">LongString</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Integer</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">ActualTime</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">RelativeTime</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>checklistDetails</strong></p>
+<p>### <strong>checklistDetails attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">name</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">uid</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">description</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">startTime</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">templateName</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>checklistStatus</strong></p>
+<p>### <strong>checklistStatus attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Pending</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Complete</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Complete (late)</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Late</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>checklistTask</strong></p>
+<p>### <strong>checklistTask attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">value</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">status</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">completeDTG</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">notes</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">dueRelativeTime</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>checklistTasks</strong></p>
+<p>### <strong>checklistTasks attributes</strong></p>
+<p>## <strong>checklistTaskStatus</strong></p>
+<p>### <strong>checklistTaskStatus attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Pending</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Complete</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Complete (late)</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Late</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>color</strong></p>
+<p>### <strong>color attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">argb</td>
+<td align="left"><p>integer with a color</p><p>e.g. 65536</p></td>
+</tr>
+<tr>
+<td align="left">value</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>contact</strong>
+This is a Cursor On Target Class representing communications parameters for contacting a friendly element for human-to-human communications. The objective of this Class is to carry the essential information needed to contact this entity by a variety of means.   Multiple ways of establishing contact can be specified;</p>
+<p>noThe attributes  callsign, phone, and email should be self-explanatory.  particular mode of contact is required. Other attributes, freq, dsn, modulation, and hostname, are also available.</p>
+<p>### <strong>contact attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">iconsetpath</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">callsign</td>
+<td align="left">The unit's voice call sign</td>
+</tr>
+<tr>
+<td align="left">freq</td>
+<td align="left">The frequency (in MHz) on which the unit may be contacted via voice.</td>
+</tr>
+<tr>
+<td align="left">email</td>
+<td align="left">e-mail address for this element (if applicable)</td>
+</tr>
+<tr>
+<td align="left">endpoint</td>
+<td align="left">TBD</td>
+</tr>
+<tr>
+<td align="left">dsn</td>
+<td align="left">DSN number for this element (if applicable)</td>
+</tr>
+<tr>
+<td align="left">phone</td>
+<td align="left">Phone number for this element (if applicable)</td>
+</tr>
+<tr>
+<td align="left">modulation</td>
+<td align="left">Amplifies the radio frequency information provided.  Contains the modulation type for the communication.  (Coding tbd, should cover complex modulations such as SINCGARS hopping, csma, etc...) am</td>
+</tr>
+<tr>
+<td align="left">hostname</td>
+<td align="left">DNS-resolvable host name</td>
+</tr>
+<tr>
+<td align="left">version</td>
+<td align="left">Version tag for this sub schema.  Necessary to ensure upward compatibility with future revisions.</td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>contentResource</strong></p>
+<p>### <strong>contentResource attributes</strong></p>
+<p>## <strong>CoT</strong>
+The Cursor-On-Target (CoT) Event data model defines an XML data schema for exchanging time sensitive position of moving objects, or "what", "when", and "where" (WWW) information, between systems.</p>
+<p>### <strong>CoT attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Identity</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">dimension</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">entity</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">lat</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">lon</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">uid</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>creatorUid</strong></p>
+<p>### <strong>creatorUid attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">INTAG</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>dest</strong></p>
+<p>### <strong>dest attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">callsign</td>
+<td align="left">the call sign of the destination</td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>detail</strong>
+An optional element used to hold CoT sub-schema. Detail has no special properties.</p>
+<p><code></code><strong>Detail entities...</strong></p>
+<p><code></code>The "detail" entity is intended to carry information that is   specific to smaller communities of producers and consumers and     require more intimate knowledge of the operating domain.  For     example, mensurated "target" events may come from dramatically     different sources and need to propagate dramatically different     "detail" information.  A close-air-support mission will augment     target details with initial point and callsign details to     facilitate coordination of weapon delivery.  In contrast, a</p>
+<p><code></code>mission planning system may augment planned targets with target     catalog information and weapon fuzing requirements.</p>
+<p><code></code>Because the "details" portion of the event are of interest only to     a subset of subscribers, that entity may be mentioned by reference     when the event is communicated.  This reduces the congestion when events are transmitted over bandwidth limited links and also     prevents the retransmission of static data elements.</p>
+<p>### <strong>detail attributes</strong></p>
+<p>## <strong>DimensionTypes</strong></p>
+<p>### <strong>DimensionTypes attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">space</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">air</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">land-unit</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">land-equipment</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">land-installation</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">sea-surface</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">sea-subsurface</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">subsurface</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">other</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>DJI</strong>
+A class to handle DJI Drones</p>
+<p>### <strong>DJI attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">spoiuid</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">homelat</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">gimbalroll</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">gimbalpitch</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">homelon</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">gimbalyaw</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>dxf</strong>
+This is a hook for an arbitrary 3D DXF description of a volume of space.</p>
+<p>### <strong>dxf attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">level</td>
+<td align="left"><p>"level" is used to indicate the preferred ordering of multiple shape sub-schemas.  For instance, if a polyline and ellipse are both present on the shape attribute, the one with the higher level value will be the "more desirable" representation of the object.  This allows producers to provide alternative representation of an objects shape while ensuring that consumers will know which of the available representation is the best.  (Note that not all consumers will implement all shape variations, hence the need for the allowing multiple shape objects.)</p><p><code></code>See the documentation for shape/ellipse/@level for remarks on determining the precedence order when level values are equal or are missing.</p><p>                                                                </p></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>dxf</strong></p>
+<p>### <strong>dxf attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">level</td>
+<td align="left"><p>"level" is used to indicate the preferred ordering of multiple shape sub-schemas.  For instance, if a polyline and ellipse are both present on the shape attribute, the one with the higher level value will be the "more desirable" representation of the object.  This allows producers to provide alternative representation of an objects shape while ensuring that consumers will know which of the available representation is the best.  (Note that not all consumers will implement all shape variations, hence the need for the allowing multiple shape objects.)</p><p><code></code>See the documentation for shape/ellipse/@level for remarks on determining the precedence order when level values are equal or are missing.</p><p>                                                                </p></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>ellipse</strong>
+The "ellipse" is a common shape abstraction used by many geomanipulation applications; it is supported natively</p>
+<p>### <strong>ellipse attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">major</td>
+<td align="left">Ellipse major axis (meters)</td>
+</tr>
+<tr>
+<td align="left">minor</td>
+<td align="left">Ellipse minor axis (meters)</td>
+</tr>
+<tr>
+<td align="left">angle</td>
+<td align="left">Orientation of major axis with respect to true north.</td>
+</tr>
+<tr>
+<td align="left">level</td>
+<td align="left"><p>"level" is used to indicate the preferred ordering of multiple shape sub-schemas.  </p><p><code></code>For instance, if a polyline and ellipse are both present on the shape attribute, the one with the higher level value will be the "more desirable" representation of the object.  This allows producers to provide alternative representation of an objects shape while ensuring that consumers will know which of the available representation is the best.  (Note that not all consumers will implement all shape variations, hence the need for the allowing multiple shape objects.)</p><p>Since the level attribute is optional, it is necesary for precedence rules to exist to ensure all consumers</p><p>process the shape definition the same way.</p><p> <code></code>The shape definition with the highest value level attribute is considered the most accurate interpretation.</p><p>2. <code></code>If all shape definitions specify the same level, the order from least to most accurate interpretation is presumed to be ellipse, polyline, dxf.</p><p>3. A shape that specifies the level attribute has precedence over any that do not specify it.</p><p>4. If the level attribute is absent from all shape definitions, the order from least to most accurate interpretation is presumed to be ellipse, polyline, dxf.</p><p>                </p></td>
+</tr>
+<tr>
+<td align="left">extrude</td>
+<td align="left">A "Height" of the ellipse used to make the flat object encompas a volume.</td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>emergency</strong>
+An emergency beacon the is continually send to all the connected clients until deactivated from the original creator</p>
+<p>### <strong>emergency attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">type</td>
+<td align="left">default constructor  def __init__(self):</td>
+</tr>
+<tr>
+<td align="left">Alert</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">cancel</td>
+<td align="left">if true the emergency beacon is canceled</td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>EntityTypes</strong></p>
+<p>### <strong>EntityTypes attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">military</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">civilian</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>environment</strong></p>
+<p>### <strong>environment attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">temperature</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">windDirection</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">windSpeed</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>Event</strong>
+represents a TAK event: this class is instantiated with a standard set of values.</p>
+<p><code></code>The opex field is intended to indicate that the event is part of a   live operation, an exercise, or a simulation.  For backward compatibility, absence of the opex indicates "no statement", which will be interpreted in   an installation specific manner.</p>
+<p><code></code>opex="o-<name>" or "e-<nickname>"  or "s-<nickname>",</p>
+<p><code></code>where "-<name>" is optional.  That is, it is permissible to   specify only "o", "e", or "s" for the opex value.</p>
+<ul>
+<li><code></code>o = operations</li>
+<li><code></code>e = exercise</li>
+</ul>
+<p><code></code>s = simulation</p>
+<p>### <strong>Event attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">how</td>
+<td align="left">Gives a hint about how the coordinates were generated.  It is used specifically to relay a hint about the types of errors that may be expected in the data and to weight the data in systems that fuse  multiple inputs.</td>
+</tr>
+<tr>
+<td align="left">version</td>
+<td align="left">Schema version of this event instance (e.g. 2.0)</td>
+</tr>
+<tr>
+<td align="left">time</td>
+<td align="left"><p>time stamp with respect to Zulu time indicating when an event was generated in extended ISO 8601 format</p><p></p><p>in ProtoBuff expressed is in milliseconds</p></td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left"><p>Event.type contains the Code for the Center on Target object. <a href="https://freetakteam.github.io/FreeTAKServer-User-Docs/About/architecture/MilSTD2525/">See here for more information</a>. It Defines what the Event is about. An event may describe a physical object, a set of raw, unprocessed bits, or a tasking.</p><p># Hierarchically organized hint about event type (<strong>default</strong> is  'a-f-G-I' for "Friendly Ground infrastructure)</p><p>The "type" attribute is a composite of components delimited by the semi-colon character. The first component of this composite attribute is defined below.</p><p><code></code>Future versions of this schema will define other components which we expect   will aid in machine filtering. Despite the exclusion of definitions   for additional components in this version of the schema, users of   this schema should expect and design an optional trailing field  delimited by the semi-colon character. This field can be ignored.</p><p>- <code></code><em>component1</em>;optional field</p><p><code></code>The first component (component1) is a hierarchically organized hint about type.</p><p><code></code>The intention is that this hierarchy be flexible and extensible and facilitate simple filtering, translation and display.  To  facilitate  filtering, the hierarchy needs to present key  fields in an easily parsed and logical order.  To facilitate  this, this component is a composite of fields separated by the "-" punctuation   character, so a valid type would be: x-x-X-X-x.  Using a punctuation for field separation allows arbitrary expansion of the  type space,</p><p><em>e.g., a-fzp-mlk-gm-...</em></p><p><code></code>Field meanings are type specific.  That is, the third field of an  "atom" type may represent air vs. ground while the same field for a   "reservation" type may represent purpose.</p><p></p><p><strong>MEANING of 'a' in the first position</strong>  </p><p>The "Atoms" portion of the type tree requires some additional explanation past the taxonomy defined below. The "Atoms" portion of  the type tree contains CoT defined fields and part of the <strong>MIL-STD-2525</strong>    type definition. To distinguish MIL-STD-2525 type strings from CoT defined  fields, the MIL-STD-2525 types must be represented in all upper    case. Differentiation of type namespace with upper/lower case   facilitates extension of CoT types and MIL-STD-2525 types without   name space conflict. An example:</p><p><code></code>a-f-<strong>A-B-C</strong>-x</p><p>- a = Atom</p><p>- f = attitude or disposition (friendly in this case)</p><p>- A-B-C  =the SDIC 2525 separated by dashs</p><p>- x = COT specific extension</p><p><code></code>The organization of CoT and MIL-STD-2525 types can be determined   from the taxonomy below, but additional details are provided here.</p><p><code></code>The "Atoms" portion of the "type" tree contains the "Battle  Dimension" and  "Function ID" fields taken from MIL-STD-2525.</p><p><code></code>"Battle Dimension" is a single character taken from MIL-STD-2525 and is located in the position 5.</p><p>a-.-<strong>G</strong>-I-M-N-B</p><p></p><p>- P - Space</p><p>- A - Air</p><p>- G - Ground</p><p>- S - Sea Surface</p><p>- U - Sea Subsurface</p><p>- SF - Special Operations Forces</p><p><code></code>The typical 2525 representation for "Function ID" is three groups of   two characters separated by a space (e.g. "12 34 56"). The CoT  schema maps this to a "-" delimited list of characters. (e.g. "1-2-3-4-5-6").</p><p><code></code>The concatenation of the "Battle Dimension" and "Function ID" fields    from the MIL-STD-2525 specification represented in the CoT schema   will be as follows:</p><p><code></code>battle dimension-func id char1-func id char2- ... -func id char6</p><p><code></code>When an appropriate MIL-STD-2525 type exists, it should be used. If  there is a MIL-STD-2525 representation which is close, but may be   refined, a CoT extension to the 2525 type can be appended.</p><p><code></code>for example:</p><p>a-h-X-X-X-X-X-<strong>i</strong> might represent hostile MIL-STD-2525 type X-X-X-X-X  of   <strong>Israeli</strong> (the 'i'<strong>)</strong> manufacture. Again, the CoT extension uses lower case.</p><p><code></code>Conceptually, this extension defines further branching from the nearest MIL-STD-2525 tree point.</p><p><code></code>If no appropriate 2525 representation exists, a type definition can be added to the CoT tree defined here. The resulting definition    would be represented in all lower case. For example</p><p><code></code>a-h-G-p-i</p><p><code></code>might define atoms-hostile-Ground-photon cannon-infrared.</p><p><code></code>The taxonomy currently looks like this: Note that the coding of the  sub fields are determined entirely by the preceding fields!) The  current type tree is defined here.</p><p><code></code><strong>+--- First position, this event describes</strong></p><p>- <code></code>a - Atoms - this event describes an actual "thing"</p><p><code></code><strong>+--- 2nd CoT affiliation of these atoms</strong></p><p>- <strong>             p - Pending</p><p>- <code></code>u - Unknown</p><p>- <code></code>a - Assumed friend</p><p>- <code></code>f - Friend</p><p>- <code></code>n - Neutral</p><p>- <code></code>s - Suspect</p><p>- <code></code>h - Hostile</p><p>- <code></code>j - Joker</p><p>- <code></code>k - Faker</p><p>- <code></code>o - None specified</p><p>- <code></code>x - Other</p><p><code></code></strong>+--- Battle dimension<strong></p><p><code></code></strong></td>
+</tr>
+<tr>
+<td align="left">stale</td>
+<td align="left"><p>The "stale" attribute defines the ending time of the event's validity interval. The start and stale fields together define an interval in time.</p><p>It has the same format as time and start.</p><p>ending time when an event should no longer be considered valid l (with respect to Zulu time in extended ISO 8601 format)</p><p>In protobuff is in milliseconds</p></td>
+</tr>
+<tr>
+<td align="left">uid</td>
+<td align="left"><p>The "uid" attribute is a globally unique name for this specific piece of information.</p><p>Several "events" may be associated with one UID, but in that case, the latest (ordered by timestamp),</p><p>overwrites all previous events for that UID.</p><p>can have additional information attached.</p><p>[EventTYPE].[MACHINESENDERID].Nichname.UniqueID</p><p>e.g. -<em>ping</em> means that this event is a ping,</p><p><em>GeoChat</em> indicates a chat type structure.</p><p>The <strong>UID</strong> should be in the following format: GeoChat.<sender uid>.<recipient callsign or name of the group>.<random string for uniqueness>.  Diverging from this format should not cause significant issues; however, the UID is used as a fallback if other information cannot be parsed from the message, so issues may still be experienced.  If uid does not contain any “.” characters, the chat room will default to “All Chat Rooms”.</p><p>GeoChat.ANDROID-7C:91:22:E8:6E:4D.DIPPER.44bf77cd-289e-4ea4-8756-ce295de168ca</p></td>
+</tr>
+<tr>
+<td align="left">start</td>
+<td align="left"><p><code></code>format - DTG</p><p>The "start" attribute defines the starting time of the event's validity interval. The start and stale fields together define an interval in time.</p><p>It has the same format as time and stale.</p><p>starting time of the event's validity interval (with respect to Zulu time in extended ISO 8601 format)</p><p>. As different from the moment in which the element was generated</p><p></p><p>in protobuff this is expressed in milliseconds</p><p></p></td>
+</tr>
+<tr>
+<td align="left">access</td>
+<td align="left">Specifies access controls that should be applied to the event</td>
+</tr>
+<tr>
+<td align="left">opex</td>
+<td align="left"><p>OPTIONAL: Specifies whether the event is part of a live operation, an exercise, or a simulation.</p><p>The access field is intended to indicates who has access to this  event. (e.g. unrestricted, nato, army, coalition...)</p><p>It is currently defined as a string, and is optional in V2.0.    </p><p>Future version of the event schema will provide formal definition of this field.</p></td>
+</tr>
+<tr>
+<td align="left">qos</td>
+<td align="left">OPTIONAL: Specifies a quality of service desired from applications processing or routing the event</td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>filename</strong></p>
+<p>### <strong>filename attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">INTAG</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>fillColor</strong></p>
+<p>### <strong>fillColor attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">value</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>FilterGroup</strong>
+the name of the group authorized to see the CoT</p>
+<p>### <strong>FilterGroup attributes</strong></p>
+<p>## <strong>group</strong></p>
+<p>### <strong>group attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">role</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">name</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">uid</td>
+<td align="left">unique ID of the group</td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>hash</strong></p>
+<p>### <strong>hash attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">INTAG</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>Hierarchy</strong></p>
+<p>### <strong>Hierarchy attributes</strong></p>
+<p>## <strong>IdentityTypes</strong></p>
+<p>### <strong>IdentityTypes attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">pending</td>
+<td align="left">pending</td>
+</tr>
+<tr>
+<td align="left">unknown</td>
+<td align="left">unknown</td>
+</tr>
+<tr>
+<td align="left">friend</td>
+<td align="left">friend</td>
+</tr>
+<tr>
+<td align="left">neutral</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">hostile</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">assumed-friend</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">suspect</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">joker</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">faker</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>image</strong>
+This is a Cursor On TargeClass  for abstract image product metadata. It is specifically limited to geographically located (though not necessarily geographically registered) image products.  </p>
+<p>It is not intended to contain all the meta data typically found in the NITF header associated with such images, but rather provides sufficient "hints" about the ISR product to facilitate collection queuing and ipl searching.  Full meta data will reside in the NITF header or other IPL-specific schemas.  </p>
+<p>This class borrows from the NITF standard.  Note, also, that this class presumes is is contained within a CoT Evebnt element which provides information about center poiint, etc.  Similarly, the CoT_shape schema can be used to delimit the bounds of the image.  Furthermore, this element may conatin a base64 encoded image file.  In this case, the 'mime' attribute should indicate the image type.</p>
+<p>### <strong>image attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">type</td>
+<td align="left">Image type, drawn from NITF specification.  E.g., SL - side-looking radar, TI - thermal infrared, FL - forward looking infrared, RD - radar, EO - electro-optical, OP - optical, HR - high resolution radar, HS - hyperspectral, CP - color frame photography, BP - black/white frame photography, SAR - synthetic aperture radar, SARIQ - SAR radio hologram, IR - infrared, MS - multispectral, ...</td>
+</tr>
+<tr>
+<td align="left">georegistered</td>
+<td align="left">(DEPRECATED) True if this image has been properly geo-registered</td>
+</tr>
+<tr>
+<td align="left">source</td>
+<td align="left">(REVISED) The source of this image, specifically the CoT UID of the producer. (The intention is to indicate equipment type used to collect imagery, not organization owning image.)</td>
+</tr>
+<tr>
+<td align="left">resolution</td>
+<td align="left">Image product resolution (expressed in meters per pixel)</td>
+</tr>
+<tr>
+<td align="left">url</td>
+<td align="left">URL link to image if the image is not embedded</td>
+</tr>
+<tr>
+<td align="left">version</td>
+<td align="left">Version tag for this sub schema.  Neccessary to ensure upward compatibility with future revisions.</td>
+</tr>
+<tr>
+<td align="left">size</td>
+<td align="left">Approximate image file size (bytes)</td>
+</tr>
+<tr>
+<td align="left">analysis</td>
+<td align="left">(DEPRECATED) True if image analysis (e.g., markup) is available</td>
+</tr>
+<tr>
+<td align="left">mime</td>
+<td align="left">If an in-lined image is contained in this entity, then this attribute describes the mime type of that image.  The actual image data will be base64 encoded. See http://www.w3schools.com/media/media_mimeref.asp for list of common mime types.</td>
+</tr>
+<tr>
+<td align="left">width</td>
+<td align="left">The width of the image (in pixels)</td>
+</tr>
+<tr>
+<td align="left">height</td>
+<td align="left">The height of the image (in pixels)</td>
+</tr>
+<tr>
+<td align="left">reason</td>
+<td align="left">(NEW) The reason this image was originally produced (BHA, BDA, ISR, ...)  Coding is TBD but will reflect the CoT type coding structure.  E.g., a-d-b Assesment-Damage-Bomb, etc...</td>
+</tr>
+<tr>
+<td align="left">bands</td>
+<td align="left">Number of data bands within the image. For example, an RGB image as 3 bands (Red, Green, Blue bands/channels)</td>
+</tr>
+<tr>
+<td align="left">mimecsv</td>
+<td align="left">Used only if the attribute 'mime' references a container type (e.g., image/x-nitf21).  In this case, 'mimecsv' holds a list of Comma Separated Values to supplement the MIME type in the mime field.  Nominally, the values in 'mimecsv' wil lbe mime types of the elements in the composite image.  For example, if 'mime' 'image/x-nitf21', then 'mimecsv' may hold 'image/jpeg', 'image/jpeg2000', or 'image/x-eagleeye'.</td>
+</tr>
+<tr>
+<td align="left">quality</td>
+<td align="left">This expresses how the tradeoff between image quality and compression were made for this image.  This is usually a 'relative' quality measure, an unsigned floating point value between 0.0 (highest compression) and 0 (highest quality). Implementers should attempt to map this scalar value to an approximate linear progression of visual quality as determined on a typical sample image.  If the field's value carries an explicit sign (+/-) including +0 or -0, it represents the exact value expressed in a range appropriate to the compression type expressed in 'mime' or 'mimecsv'.  For example,  with 'image/x-eagleeye' the EagleEye clip setting, the quality setting may range from -4096.0 to +4096.0.</td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>Input</strong>
+this class can drive input filtering without auth messages.</p>
+<p>### <strong>Input attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">name</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Protocol</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Port</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">auth</td>
+<td align="left">Previously the only valid value for the <input> “auth” attribute was “ldap”. “file” is now another valid value.</td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>keywords</strong></p>
+<p>### <strong>keywords attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">INTAG</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>labels_on</strong></p>
+<p>### <strong>labels_on attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">value</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>link</strong>
+This is a Cursor On Target Class for linking to either another CoT event or an arbitrary Internet resource. The objective of this class is to provide an abstract way to express a relationship between a CoT object and other object.  This allows, for example, a sensor point of interest to be linked back to its source, or a PPLI from a wingman to be associated with his flight lead.  Linkages are always unidirectional.  </p>
+<p>One entity may have multiple links (i.e., it may be related to multiples other entities).  For processing simplicity, it is required that the relationship graphs will directed and acyclic (no cycles).  The link, itself, names the relationship (using a hierarchy similar to the CoT type), the UID of the related object (whether CoT or not), possibly provides a URL for retrieving that object.</p>
+<p>links are used for example in routes.</p>
+<p>### <strong>link attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">uid</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">production_time</td>
+<td align="left">the time in which this link has been produced (e.g. "2020-11-26T14:19:02Z")</td>
+</tr>
+<tr>
+<td align="left">relation</td>
+<td align="left"><p>The type of relationship (e.g, subject, object, indirect object) that this link describes.  This is a hierarchy much like the event type field.</p><p>Common values: "c"</p><p></p></td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left"><p>The CoT type of the referenced MIL 2525 object.  This is included because it is generally the key item needed in a tasking. Common types are:</p><p>- <strong>Control Point:</strong> "b-m-p-c"</p><p>- <code></code><strong>Waypoint</strong>: "b-m-p-w"</p></td>
+</tr>
+<tr>
+<td align="left">url</td>
+<td align="left">If present, this is a URL through which the linked object can be retrieved.   If the URL is missing, then the object should be a periodic message (e.g., blue force track) that can be read from a CoT stream.</td>
+</tr>
+<tr>
+<td align="left">parent_callsign</td>
+<td align="left">the call sign of the client that produced this link</td>
+</tr>
+<tr>
+<td align="left">remarks</td>
+<td align="left">Remarks associated with this link.</td>
+</tr>
+<tr>
+<td align="left">mime</td>
+<td align="left">Internet Media type of the referenced object.  If the link is to a CoT event, the mime attribute is optional and its type may be application/xml or text/xml as described in RFC 3023, "XML Media Types", or the unregistered type, application/cot+xml.  If the link is to an arbitrary resource, the mime attribute is required and and appropriate Internet media type must be specified.  Registered media types are managed by the IANA and are listed at http://www.iana.org/assignments/media-types/.</td>
+</tr>
+<tr>
+<td align="left">version</td>
+<td align="left">Version tag for this sub schema.  Neccessary to ensure upward compatibility with future revisions.</td>
+</tr>
+<tr>
+<td align="left">point</td>
+<td align="left"><p>location of a point in  Format: "Lat,Lng" decimal values</p><p>. e.g.</p><p>38.843641314210366,-77.04564214131744</p></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>Marti</strong>
+Messages sent through the TAK server require an additional element to assist the server with properly routing your messages.  If this element is not included, the server will interpret this as a message to all recipients, and the message will be sent to everyone, and depending upon the client software, this could mean a private message would be displayed publicly.</p>
+<p>### <strong>Marti attributes</strong></p>
+<p>## <strong>mimeType</strong></p>
+<p>### <strong>mimeType attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">INTAG</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>mission</strong></p>
+<p>### <strong>mission attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">type</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">tool</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">name</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">authorUid</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>Mission</strong>
+Represent a TAK Mission</p>
+<p>### <strong>Mission attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">name</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">server</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">description</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>MissionChange</strong></p>
+<p>### <strong>MissionChange attributes</strong></p>
+<p>## <strong>MissionChanges</strong></p>
+<p>### <strong>MissionChanges attributes</strong></p>
+<p>## <strong>missionName</strong></p>
+<p>### <strong>missionName attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">INTAG</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>MissionType</strong></p>
+<p>### <strong>MissionType attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">CREATE</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">CHANGE</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>name</strong></p>
+<p>### <strong>name attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">INTAG</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>point</strong></p>
+<p>### <strong>point attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">lat</td>
+<td align="left">Latitude referred to the WGS 84 ellipsoid in degrees</td>
+</tr>
+<tr>
+<td align="left">lon</td>
+<td align="left">Longitude referred to the WGS 84 in degrees</td>
+</tr>
+<tr>
+<td align="left">ce</td>
+<td align="left"><p>Circular area around the point defined by lat and lon fields in meters.  Although named ce, this field is intended to define a circular area around the event point, not necessarily an error (e.g. Describing a reservation area is not an "error").  </p><p></p><p>If it is appropriate for the "ce" field to represent an error value (e.g. event describes laser designated target), the value will represent the one sigma point for a zero mean  normal (Guassian) distribution.</p></td>
+</tr>
+<tr>
+<td align="left">le</td>
+<td align="left"><p>Linear Error in meters associated with the HAE field. Although named le, this field is intended to define a height range about the event point, not necessarily an error. This field, along with the ce field allow for the definition of a cylindrical volume about the point. If it is appropriate for the "le" field to represent an error (e.g. event describes laser designated target), the value will represent the one sigma point for a zero mean normal (Guassian) distribution.</p><p>A height range about the event point in meters associated with the HAE field. When used to represent error, the value represents the one sigma point for a zero mean normal (Gaussian) distribution.</p></td>
+</tr>
+<tr>
+<td align="left">hae</td>
+<td align="left"><p>Height above Ellipsoid based on WGS-84 ellipsoid (measured in meters)</p><p>HAE acronym for Height above Ellipsoid based on WGS-84 ellipsoid (measured in meters).</p><p></p><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>polyline</strong>
+The poly line provides a mechanism to express arbitrarily complex two-dimenstional shapes.  This is used for representing oddly shaped objects such as exclusion zones, etc.  Though generally closed, it is not necessarily a closed line, thus allowing polyline to represent objects such as phasing lines, etc.</p>
+<p>### <strong>polyline attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">vertex</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">level</td>
+<td align="left"><p>"level" is used to indicate the preferred ordering of multiple shape sub-schemas.  For instance, if a polyline and ellipse are both present on the shape attribute, the one with the higher level value will be the "more desirable" representation of the object.  This allows producers to provide alternative representation of an objects shape while ensuring that consumers will know which of the available representation is the best.  (Note that not all consumers will implement all shape variations, hence the need for the allowing multiple shape objects.)</p><p>                </p><p><code></code>See the documentation for shape/ellipse/@level for remarks on determining the precedence order when level values are equal or are missing.</p><p>                </p></td>
+</tr>
+<tr>
+<td align="left">closed</td>
+<td align="left">True if the list of verticies should be considered a closed polygon (an implicit line will be added from vertex N to vertex 0).</td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>Precisionlocation</strong>
+some type of location?</p>
+<p>### <strong>Precisionlocation attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">altsrc</td>
+<td align="left">TDB can be DTED0 or ???</td>
+</tr>
+<tr>
+<td align="left">geopointsrc</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">PRECISE_IMAGE_FILE</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">PRECISE_IMAGE_FILE_X</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">PRECISE_IMAGE_FILE_Y</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>remarks</strong>
+This is a Cursor On TargetClass  for a generic remarks (aka "FreeText").</p>
+<p>Provides a place to annotate CoT with free text information.  e.g. comments from other users about the current COT. Used also for the geoChat.</p>
+<p><strong>the xml body of this class is used to transport the chat message</strong></p>
+<p><code></code>While the use of free text is strongly discouraged (it hampers machine-to-machine communication) it is a pragmatic necessity.  This entity attempts to encapsulate freetext in a way that simplifies subsequent machine processing.  The content of this entity is presumed to be a human-readable chunk of textual data.  The attributes merely aid in the machine handling of the data.</p>
+<p>### <strong>remarks attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">time</td>
+<td align="left">the time of the remark was added to the CoT object</td>
+</tr>
+<tr>
+<td align="left">to</td>
+<td align="left"><p>Intended recipeint(s) of this remark information. Tentative field coding as follows: The to attribute may contain the UID of the entity to whom the message is addressed.  (Implementors should expect that future versions of this sub schema will allow a comma separated list of UIDs.)  Absense of an explict addressee means the message is broadcast.</p><p>e.g. ANDROID-359975090666199</p><p></p><p></p></td>
+</tr>
+<tr>
+<td align="left">source</td>
+<td align="left">Source specifies the sender’s UID – this is what is parsed by recipients to determine the sender, with the UID format being the fallback.</td>
+</tr>
+<tr>
+<td align="left">version</td>
+<td align="left">Version tag for this sub schema.  Neccessary to ensure upward compatibility with future revisions.</td>
+</tr>
+<tr>
+<td align="left">keywords</td>
+<td align="left"><p>Used to track a conversation thread.  The format is a comma-separated list of freetext keywords.</p><p></p><p><code></code>ex. keywords="debriefing"            - Describes a conversation about debriefing</p><p><code></code>ex. keywords="mission-A"             - Describes a conversation about mission-A</p><p><code></code>ex. keywords="tasking_B, subject_C"  - Describes a conversation about tasking_B and subject_C</p></td>
+</tr>
+<tr>
+<td align="left">sourceID</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>request</strong>
+This is a Cursor On Target sub-schema for a generic request.  This schema contains information common to all requests, specifically where responses should be sent, the overall priority of the request, if immediate willco/cantco acknowledgement is needed, etc.  Detail information for specific request types are carried in sub-schemas nested within this one.</p>
+<p>Notice that this is not the same as in <strong>TAKRequest</strong></p>
+<p>### <strong>request attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">notify</td>
+<td align="left">Network endpoint to which status notifications should be delivered. (A network endpoint is represented as an URL, e.g., tcp://hostname:port,  udp://hostname:port.   The previous format, host:port, e.g., 192.168.0.1:71556, is deprecated, but implementers should be aware that this format may be in use.</td>
+</tr>
+<tr>
+<td align="left">wilcoby</td>
+<td align="left">An optional field that requests the receiving system to provide a positive or negative akcnowledgement (WILCO/CANTCO) by a specific time.  This is used to ensure that deadline driven requests are made known to the operator.</td>
+</tr>
+<tr>
+<td align="left">priority</td>
+<td align="left">This optional field indicates this request's relative priority with respect to other requests.  (At present, no specific coding scheme is in mandated, but a floating point value between 0.0(low) and 0(high) is in current (limited) use.)</td>
+</tr>
+<tr>
+<td align="left">version</td>
+<td align="left">Version tag for this sub schema.  Neccessary to ensure upward compatibility with future revisions.</td>
+</tr>
+<tr>
+<td align="left">to</td>
+<td align="left">When present, this field contains the CoT UID of the specific entity who is being addressed.  It is assumed that all CoT entities that can provide a service are reported as friendly atoms.</td>
+</tr>
+<tr>
+<td align="left">authority</td>
+<td align="left">This is a 'signature block' which holds the CoT uid of the entity which has uathorized the request.  The authorizing entity is not necessarily the originator of the request and might not be associated with the 'notify' field. Authority is intended to provide services (such as a striker) a mechanism to verify that the request has been approved.</td>
+</tr>
+<tr>
+<td align="left">streamto</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>route</strong></p>
+<p>### <strong>route attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">sender</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>route_fil</strong></p>
+<p>### <strong>route_fil attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Infil</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Exfil</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>route_method</strong></p>
+<p>### <strong>route_method attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Driving</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Walking</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Flying</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Swimming</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Watercraft</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>route_order</strong></p>
+<p>### <strong>route_order attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Ascending Check Points</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Descending Check Points</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>route_routetype</strong></p>
+<p>### <strong>route_routetype attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Primary</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Secondary</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>routeinfo</strong></p>
+<p>### <strong>routeinfo attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">__navcues</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>sensor</strong>
+This is (the root class of) a Cursor On Target sub-schema for a steerable, staring sensor such as EO, IR, or Radar sensor. The root class is intended to capture only information on the sensor's orientation and field of view is.  Details about it's spectrum, sensitivity, resolution, modality, performance, etc., should be captured in a "derived" subschema for that particular type of sensor.  All orientation attributes associated with sensor are normalized to an geodedic frame of reference, removing platform factors such as roll, pitch, yaw, etc. Therefore an "azimuth" of 0 means the sensor is pointed north regardless of its platform heading or attitude.</p>
+<p>### <strong>sensor attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">elevation</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">version</td>
+<td align="left">Version tag for this sub schema.  Neccessary to ensure upward compatibility with future revisions.</td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left">The sensor type.   This is a type hierarchy much like the CoT type tree.  E.g., r - raster, r-e - raster EO, r-e-z-c - raster EO zoom continuous.  See types.txt for details</td>
+</tr>
+<tr>
+<td align="left">vfov</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">model</td>
+<td align="left">This is the sensor model.  E.g., LANTRIN, TARPS, etc.</td>
+</tr>
+<tr>
+<td align="left">fov</td>
+<td align="left">field of view</td>
+</tr>
+<tr>
+<td align="left">roll</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">fovBlue</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">displayMagneticReference</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">range</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">fovGreen</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">fovAlpha</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">hideFov</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">fovRed</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">azimuth</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>shape</strong>
+This is a Cursor On Target sub-schema for a generic shape description.  Many objects are not adequately represented by the simple "point" object in the CoT base schema.  However, it is counterproductive to burden all CoT applications to understand arbitrary shapes, so "shape" is an optional attribute that can be used to communicate between shape-aware apprications.  The "point" object in the base schema must still be populated and the CE and LE fields in the point entity must be set such that the point completely encloses the area described in any shape entity in the detail section.  (This is needed so that CoT applications can quickly filter out objects that are clearly outside an area of interest.</p>
+<p>### <strong>shape attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">ellipse</td>
+<td align="left">The "ellipse" is a common shape abstraction used by many geomanipulation applications; it is supported natively.</td>
+</tr>
+<tr>
+<td align="left">link</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">polyline</td>
+<td align="left">The poly line provides a mechanism to express arbitrarily complex two-dimenstional shapes.  This is used for representing oddly shaped objects such as exclusion zones, etc.  Though generally closed, it is not necessarily a closed line, thus allowing polyline to represent objects such as phasing lines, etc.</td>
+</tr>
+<tr>
+<td align="left">dxf</td>
+<td align="left">This is a hook for an arbitrary 3D DXF description of a volume of space.</td>
+</tr>
+<tr>
+<td align="left">version</td>
+<td align="left">Version tag for this sub schema.  Can be used to ensure upward compatibility with future revisions.</td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>size</strong></p>
+<p>### <strong>size attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">INTAG</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>spatial</strong>
+This is a Cursor On TargetClass for spatial information of physical entity.  It is intended to appear in the detail section of the Cursor On Target schema. It has elements to represent attitude and associated first derivatives (spin). The intention behind the spatial element is to convey the attitude of a body moving through space with respect to its "nominal" flight attitude.</p>
+<p>### <strong>spatial attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">attitude</td>
+<td align="left">Attitude  represents the attitude of the entity described by the Cursor On Target base schema.</td>
+</tr>
+<tr>
+<td align="left">spin</td>
+<td align="left">Spin represents the first derivative of attributes found in attitude.</td>
+</tr>
+<tr>
+<td align="left">version</td>
+<td align="left">Version tag for this sub schema.  Neccessary to ensure upward compatibility with future revisions.</td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>spin</strong></p>
+<p>### <strong>spin attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">roll</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">pitch</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">yaw</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>status</strong>
+The status element provides a container for elements reporting different kinds of</p>
+<p>status. e.g. a fuel subschema is used to report the amount of burnable fuel</p>
+<p>remaining in liters and the current burn rate (in liters per second).</p>
+<p>### <strong>status attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">battery</td>
+<td align="left">% of the battery on the phone</td>
+</tr>
+<tr>
+<td align="left">readiness</td>
+<td align="left">probably boolean to determine if ready or not</td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>strokeColor</strong></p>
+<p>### <strong>strokeColor attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">value</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>strokeWeight</strong></p>
+<p>### <strong>strokeWeight attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">value</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>submissionTime</strong></p>
+<p>### <strong>submissionTime attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">INTAG</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>submitter</strong></p>
+<p>### <strong>submitter attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">INTAG</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>TakControl</strong>
+A server which supports the TAK Protocol <strong>MAY</strong> send the following CoT XML     message to indicate this support (whitespace added, xml header omitted):</p>
+<p><em><event version='2.0' uid='protouid' type='t-x-takp-v' time='TIME' start='TIME' stale='TIME' how='m-g'></em></p>
+<p><code></code><em><point lat='0.0' lon='0.0' hae='0.0' ce='999999' le='999999'/></em></p>
+<p><code></code><em><detail></em></p>
+<p><code></code><em><TakControl></em></p>
+<p><code></code><em><TakProtocolSupport version="1"/></em></p>
+<p><code></code><em></TakControl></em></p>
+<p><code></code><em></detail></em></p>
+<p><em></event></em></p>
+<p>This message     may contain one or more TakProtocolSupport elements inside the single    <TakControl> detail, each specifying a supported version.</p>
+<p><code></code>The TAK server MUST send this message no more than once per connection.</p>
+<p>To allow for ancillary information in the negotiation, the TakProtocolSupport element <em>MAY</em> contain additional attributes compliant</p>
+<p><code></code>with the Protocol version indicated.</p>
+<p>### <strong>TakControl attributes</strong></p>
+<p>## <strong>TAKControlSupport</strong>
+set from</p>
+<p>### <strong>TAKControlSupport attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">version</td>
+<td align="left">version attribute is an integer number specifying    a version of the TAK Protocol the server supports.</td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>TakRequest</strong></p>
+<p>### <strong>TakRequest attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">version</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>TakResponse</strong>
+is sent in the procedure of negotiating protolcs to indicates if the server is accepting the client request to switch to an higher level of the protocol</p>
+<p>### <strong>TakResponse attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">status</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>takv</strong></p>
+<p>### <strong>takv attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">platform</td>
+<td align="left">the variant of TAK</td>
+</tr>
+<tr>
+<td align="left">device</td>
+<td align="left">type of physical device</td>
+</tr>
+<tr>
+<td align="left">os</td>
+<td align="left">the operating system running TAK</td>
+</tr>
+<tr>
+<td align="left">version</td>
+<td align="left">the version of TAK running on the device</td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>TeamColor</strong></p>
+<p>### <strong>TeamColor attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Yellow</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Red</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Blue</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Orange</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Magenta</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Maroon</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Purple</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Dark Blue</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Cyan</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Teal</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Green</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Dark Green</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Brown</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>TeamRole</strong></p>
+<p>### <strong>TeamRole attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Team Member</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Team Lead</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">HQ</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Sniper</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Medic</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Forward Observer</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">RTO</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">K9</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>templates</strong>
+a class for  checklist templates</p>
+<p>### <strong>templates attributes</strong></p>
+<h2 id="text"><strong>Text</strong></h2>
+<h3 id="text-attributes"><strong>Text attributes</strong></h3>
+<p>## <strong>timestamp</strong></p>
+<p>### <strong>timestamp attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">INTAG</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>tog</strong></p>
+<p>### <strong>tog attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">enabled</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>tool</strong></p>
+<p>### <strong>tool attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">INTAG</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>Topics</strong>
+this class contains the topic (as properties) that each FTS microservice must implement</p>
+<p>### <strong>Topics attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Announce</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Start</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Stop</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Install</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">unistall</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Configure</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Log</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>track</strong>
+The track element specifies <strong>direction</strong> and <strong>speed</strong> of travel. It has two required attributes: course and speed. It also has optional attributes for specifying the vertical component of the motion vector (slope) and errors associated with course, speed, and slope.</p>
+<p><strong>Course</strong>denotes the direction of motion and is specified as the number of degrees measured clockwise from true North.</p>
+<p><strong>Speed</strong>is specified in meters per second as speed over ground.</p>
+<p>There is no constraint on the precision used for these values.</p>
+<p>### <strong>track attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">speed</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">eCourse</td>
+<td align="left">1-sigma error on a Gaussian distribution associated with the course attribute</td>
+</tr>
+<tr>
+<td align="left">course</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">eSpeed</td>
+<td align="left">1-sigma error on a Gaussian distribution associated with the speed attribute</td>
+</tr>
+<tr>
+<td align="left">eSlope</td>
+<td align="left">1-sigma error on a Gaussian distribution associated with the slope attribute</td>
+</tr>
+<tr>
+<td align="left">version</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>type</strong></p>
+<p>### <strong>type attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">INTAG</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>uastool</strong></p>
+<p>### <strong>uastool attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">extendedCot</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">activeRoute</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>uid</strong>
+This is a Cursor On Target detail Class that holds the unique ID assigned by each system that processed this event.  </p>
+<p>Most systems (including CoT) have their own method for assigning system-wide unique identifiers for a particular object.  In general, it is not possible for a single UID to be used for all systems.  This 'uid' entity provides a common place where each systems can record its  particular UID for each CoT event.  Like the _flow-tags_ element, each system is responsible for adding its own attribute to this entity.  The name of the attribute should represent the system, and the value of the attribute should be the id that system assigned to this CoT object.</p>
+<p>### <strong>uid attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">version</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Droid</td>
+<td align="left">TBD, maybe from Android?</td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>uid</strong>
+special class used in mission only for ID</p>
+<p>### <strong>uid attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">INTAG</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>usericon</strong>
+the image used to display the COt</p>
+<p>### <strong>usericon attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">iconsetpath</td>
+<td align="left"><p>the path of the icon image used</p><p>MIL 2525 STD</p><p>- COT_MAPPING_2525B/a-u/a-u-G</p><p>ICON</p><p>- 34ae1613-9645-4222-a9d2-e5f243dea2865/Military/EA-6B.png</p><p>- 'f7f71666-8b28-4b57-9fbb-e38e61d33b79/Google/hiker.png'/</p><p>in alternative for a spot</p><p>- COT_MAPPING_SPOTMAP/b-m-p-s-m/-65536</p></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>vehicle</strong></p>
+<p>### <strong>vehicle attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">goHomeBatteryPercent</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">hal</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">flightTimeRemaining</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">typeTag</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">batteryRemainingCapacity</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">isFlying</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">flightTime</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">batteryMaxCapacity</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">voltage</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>vertex</strong></p>
+<p>### <strong>vertex attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">hae</td>
+<td align="left">Height Above Ellipsoid (HAE) in Meters.  If absent, the value of the point/@hae in the CoT event base schema is used.</td>
+</tr>
+<tr>
+<td align="left">lat</td>
+<td align="left">Latitude based on WGS-84 ellipsoid in signed degree-decimal format (e.g. -33.350000). Range -90 -&gt; +90. Positive values denote north.</td>
+</tr>
+<tr>
+<td align="left">lon</td>
+<td align="left">Longitude based on WGS-84 ellipsoid in signed degree-decimal format (e.g. 44.383333). Range -180 -&gt; +180. Positive values denote east.</td>
+</tr>
+</tbody>
+</table>
+<p>## <strong>video</strong></p>
+<p>### <strong>video attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Name</strong></th>
+<th align="left"><strong>Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">sensor</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">spi</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">url</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../../FeaturesCompared/" class="md-footer__link md-footer__link--prev" aria-label="Previous: FreeTAKServer Compared" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              FreeTAKServer Compared
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../MilSTD2525/" class="md-footer__link md-footer__link--next" aria-label="Next: About Mil-STD-2525 and COTS" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              About Mil-STD-2525 and COTS
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>
